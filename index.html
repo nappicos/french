@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>🇫🇷 Français · Tests interactifs · Ambiance néon française</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: linear-gradient(135deg, #002395 0%, #ffffff 50%, #ed2939 100%);
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            color: #f0eef7;
+            position: relative;
+            overflow-x: hidden;
+            padding: 1.5rem;
+        }
+        /* éléments flottants à la française */
+        .french-float {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            font-size: clamp(1.5rem, 8vw, 4rem);
+            opacity: 0.25;
+            animation: floatFrench 18s infinite alternate ease-in-out;
+        }
+        @keyframes floatFrench {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(30px, -25px) rotate(8deg); }
+        }
+        .eiffel { top: 5%; left: 2%; }
+        .baguette { bottom: 10%; right: 3%; animation-duration: 22s; }
+        .croissant { top: 70%; left: 85%; animation-duration: 25s; }
+        .vin { top: 85%; left: 5%; animation-duration: 20s; }
+        
+        /* néon tricolore */
+        .neon-blue { text-shadow: 0 0 8px #002395, 0 0 15px #0055ff; }
+        .neon-white { text-shadow: 0 0 8px #ffffff, 0 0 15px #ccccff; }
+        .neon-red { text-shadow: 0 0 8px #ed2939, 0 0 15px #ff6666; }
+        
+        .main-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1300px;
+            margin: 0 auto;
+            backdrop-filter: blur(3px);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 2rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #002395, #ffffff, #ed2939);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            display: inline-block;
+        }
+        .hero p {
+            color: #fff3e0;
+            font-weight: 600;
+            margin-top: 0.8rem;
+            font-size: 1.1rem;
+            background: rgba(0,0,0,0.5);
+            display: inline-block;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+        .flag-stripe {
+            display: flex;
+            justify-content: center;
+            gap: 0.2rem;
+            margin: 1rem auto;
+            width: 200px;
+        }
+        .stripe {
+            width: 60px;
+            height: 12px;
+            border-radius: 20px;
+        }
+        .stripe.blue { background: #002395; box-shadow: 0 0 12px #002395; }
+        .stripe.white { background: #ffffff; box-shadow: 0 0 12px #ffffff; }
+        .stripe.red { background: #ed2939; box-shadow: 0 0 12px #ed2939; }
+        
+        .blocks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 2rem;
+        }
+        .block-card {
+            background: rgba(0, 35, 149, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            padding: 1.5rem 0.8rem;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            text-decoration: none;
+            display: block;
+        }
+        .block-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: #ffffff;
+            box-shadow: 0 0 25px #ffffffaa, 0 0 15px #ed2939;
+            background: rgba(237, 41, 57, 0.7);
+        }
+        .block-card span {
+            font-size: 1.9rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ffffff, #ffdddd);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .block-card small {
+            display: block;
+            color: #ffe6cc;
+            margin-top: 6px;
+            font-size: 0.85rem;
+        }
+        .exam-card {
+            background: linear-gradient(135deg, #002395, #ed2939);
+            border: none;
+            box-shadow: 0 0 28px #ffffffaa;
+        }
+        .exam-card span {
+            background: white;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: white;
+            text-shadow: 0 0 6px #fff;
+        }
+        .info-footer {
+            text-align: center;
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            opacity: 0.9;
+            color: #fff5e6;
+        }
+        @media (max-width: 640px) {
+            body { padding: 1rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .blocks-grid { gap: 0.9rem; }
+            .block-card { padding: 1rem 0.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- objets français flottants -->
+    <div class="french-float eiffel">🗼</div>
+    <div class="french-float baguette">🥖</div>
+    <div class="french-float croissant">🥐</div>
+    <div class="french-float vin">🍷</div>
+    <div class="french-float" style="top:40%; left:90%;">🐓</div>
+    
+    <div class="main-container">
+        <div class="hero">
+            <div class="flag-stripe">
+                <div class="stripe blue"></div>
+                <div class="stripe white"></div>
+                <div class="stripe red"></div>
+            </div>
+            <h1><i class="fas fa-french-fries"></i> Français · Tests & défis <i class="fas fa-flag-checkered"></i></h1>
+            <p>✨ entraînement néon à la française ✨</p>
+        </div>
+        
+        <div class="blocks-grid" id="blocksGrid"></div>
+        
+        <div class="info-footer">
+            <i class="fas fa-wine-bottle"></i> mêmes règles : aléatoire, progression, erreurs corrigées, touche Entrée<br>
+            <i class="fas fa-crown"></i> 4 blocs + examen · néon tricolore · Paris vibes
+        </div>
+    </div>
+
+    <script>
+        // générer des petites étoiles en fond (optionnel)
+        for(let i=0; i<120; i++) {
+            let star = document.createElement('div');
+            star.style.position = 'fixed';
+            star.style.background = 'white';
+            star.style.borderRadius = '50%';
+            star.style.width = Math.random()*3+1+'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random()*100+'%';
+            star.style.top = Math.random()*100+'%';
+            star.style.opacity = Math.random()*0.6+0.2;
+            star.style.pointerEvents = 'none';
+            star.style.zIndex = '0';
+            document.body.appendChild(star);
+        }
+
+        const blocks = [
+            { name: "1 - 50", file: "quiz-fr-1-50.html" },
+            { name: "51 - 100", file: "quiz-fr-51-100.html" },
+            { name: "101 - 150", file: "quiz-fr-101-150.html" },
+            { name: "151 - fin", file: "quiz-fr-151-fin.html" }
+        ];
+        const container = document.getElementById('blocksGrid');
+        blocks.forEach(block => {
+            const card = document.createElement('a');
+            card.href = block.file;
+            card.className = 'block-card';
+            card.innerHTML = `<span>${block.name}</span><small><i class="fas fa-book-open"></i> questions</small>`;
+            container.appendChild(card);
+        });
+        const examCard = document.createElement('a');
+        examCard.href = 'exam-fr.html';
+        examCard.className = 'block-card exam-card';
+        examCard.innerHTML = `<span>🎓 EXAMEN FINAL 🎓</span><small>25 questions aléatoires</small>`;
+        container.appendChild(examCard);
+    </script>
+</body>
+</html>
