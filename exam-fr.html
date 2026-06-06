@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>🇫🇷 EXAMEN · Французский язык · 25 вопросов</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: radial-gradient(ellipse at 30% 20%, #0a0a2a, #020118);
+            font-family: 'Segoe UI', 'Inter', 'Poppins', sans-serif;
+            min-height: 100vh;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .magic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(circle at 20% 40%, rgba(255, 105, 180, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(155, 48, 255, 0.08) 0%, transparent 50%);
+        }
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: starTwinkle 5s infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes starTwinkle {
+            0% { opacity: 0.15; transform: scale(0.6); box-shadow: 0 0 2px #fff; }
+            100% { opacity: 0.9; transform: scale(1.3); box-shadow: 0 0 12px #ff99cc, 0 0 6px #cc66ff; }
+        }
+        .french-float {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            opacity: 0.35;
+            animation: floatFrench 22s infinite alternate ease-in-out;
+            filter: drop-shadow(0 0 8px #ff66cc) drop-shadow(0 0 4px #aa66ff);
+        }
+        @keyframes floatFrench {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(35px, -30px) rotate(8deg); }
+        }
+        .eiffel { top: 3%; left: 1%; animation-duration: 18s; }
+        .baguette { bottom: 5%; right: 1%; animation-duration: 24s; }
+        .croissant { top: 70%; left: 86%; animation-duration: 26s; }
+        .quiz-wrapper {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(8, 8, 35, 0.7);
+            backdrop-filter: blur(14px);
+            border-radius: 2rem;
+            padding: 1.2rem;
+            border: 1px solid rgba(255, 105, 180, 0.5);
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.25), 0 0 20px rgba(155, 48, 255, 0.25);
+            z-index: 10;
+        }
+        h1 {
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            background: linear-gradient(135deg, #ff99cc, #ffffff, #d9b3ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px #ff99cc;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .total-badge {
+            background: rgba(26, 44, 110, 0.7);
+            backdrop-filter: blur(4px);
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            font-size: clamp(0.7rem, 3vw, 0.9rem);
+            color: #ffccdd;
+            border: 1px solid #ff66cc;
+            text-shadow: 0 0 6px #ff66cc;
+        }
+        .quote-box {
+            background: rgba(26, 44, 110, 0.5);
+            border-radius: 1.5rem;
+            padding: 0.6rem 1rem;
+            margin: 0.8rem 0;
+            text-align: center;
+            border-left: 6px solid #ff66cc;
+            font-style: italic;
+            color: #fff0f5;
+            text-shadow: 0 0 6px #1a2c6e;
+            font-size: clamp(0.8rem, 3.5vw, 1rem);
+        }
+        .rules {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 1.2rem;
+            padding: 0.5rem 0.8rem;
+            margin-bottom: 0.8rem;
+            font-size: clamp(0.7rem, 3vw, 0.85rem);
+            color: #ffdfe6;
+            border: 1px solid rgba(255, 102, 204, 0.5);
+        }
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+        .stat {
+            background: rgba(26, 44, 110, 0.7);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: clamp(0.7rem, 3vw, 0.85rem);
+            font-weight: bold;
+            border: 1px solid #ff99cc;
+            color: #ffebf0;
+            text-shadow: 0 0 5px #1a2c6e;
+        }
+        .progress-area {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .progress-bar-bg {
+            flex: 1;
+            background: #1a1a3a;
+            height: 1rem;
+            border-radius: 2rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff66cc, #b366ff, #ffffff);
+            transition: width 0.3s;
+            box-shadow: 0 0 6px #ff66cc;
+        }
+        .progress-text {
+            background: #00000066;
+            padding: 0.1rem 0.6rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            font-size: clamp(0.7rem, 3vw, 0.85rem);
+            color: #ffddcc;
+        }
+        .question-card {
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border: 2px solid rgba(255, 102, 204, 0.6);
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+        }
+        .question-text {
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 0.8rem;
+            border-radius: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+            text-shadow: 0 0 8px #b366ff;
+            word-break: break-word;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+        .option {
+            background: rgba(26, 26, 62, 0.8);
+            border: 1px solid #ff99cc;
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: 0.1s;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: clamp(0.8rem, 3.5vw, 1rem);
+            word-break: break-word;
+        }
+        .option.selected {
+            background: rgba(255, 102, 204, 0.5);
+            border-color: #ffffff;
+            box-shadow: 0 0 12px #ff66cc;
+        }
+        .feedback {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 1.5rem;
+            padding: 0.6rem;
+            margin: 0.8rem 0;
+            text-align: center;
+            border-left: 6px solid #ff99cc;
+            color: #ffffcc;
+            text-shadow: 0 0 6px #1a2c6e;
+            font-size: clamp(0.8rem, 3.5vw, 1rem);
+        }
+        .button-group {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 0.6rem;
+        }
+        .btn {
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(95deg, #1a2c6e, #b366ff);
+            color: white;
+            transition: 0.1s;
+            box-shadow: 0 0 10px #ff99cc;
+            font-size: clamp(0.8rem, 3.5vw, 1rem);
+        }
+        .btn-primary {
+            background: linear-gradient(95deg, #ff66cc, #b366ff);
+            box-shadow: 0 0 15px #ff66cc;
+        }
+        .restart-btn {
+            background: linear-gradient(95deg, #ffffff, #1a2c6e);
+            color: #1a2c6e;
+        }
+        .hidden {
+            display: none;
+        }
+        .review-section {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px solid #ff99cc;
+        }
+        .mistake-item {
+            background: #1a173d;
+            padding: 0.5rem;
+            border-radius: 1rem;
+            margin-bottom: 0.5rem;
+            border-left: 8px solid #ff66cc;
+            color: #ffddcc;
+            font-size: clamp(0.75rem, 3vw, 0.9rem);
+            word-break: break-word;
+        }
+        footer {
+            text-align: center;
+            font-size: clamp(0.65rem, 3vw, 0.75rem);
+            margin-top: 1rem;
+            color: #ffccdd;
+            text-shadow: 0 0 6px #1a2c6e;
+        }
+        @media (max-width: 600px) {
+            .quiz-wrapper { padding: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="magic-bg"></div>
+    <div class="french-float eiffel">🗼</div>
+    <div class="french-float baguette">🥖</div>
+    <div class="french-float croissant">🥐</div>
+    <script>
+        for (let i = 0; i < 150; i++) {
+            let star = document.createElement('div');
+            star.classList.add('star');
+            let sz = Math.random() * 3 + 1;
+            star.style.width = sz + 'px';
+            star.style.height = sz + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 8 + 's';
+            star.style.animationDuration = 3 + Math.random() * 5 + 's';
+            document.body.appendChild(star);
+        }
+    </script>
+    <div class="quiz-wrapper" id="app">
+        <div class="top-bar">
+            <h1>🇫🇷 EXAMEN · Французский язык · 25 вопросов</h1>
+            <span class="total-badge" id="totalSpan">📘 всего: 25</span>
+        </div>
+        <div class="quote-box" id="quoteBox">✨ Экзамен — проверка твоих знаний. Удачи! ✨</div>
+        <div class="rules">
+            🚀 Правила: Выбери вариант, нажми Enter для проверки, ещё раз Enter – следующий вопрос. В любой момент можно нажать «Перезапустить тест».<br>
+            🎲 Каждый раз тест выбирает 25 случайных вопросов из всех 200.
+        </div>
+        <div id="startScreen" style="text-align:center; padding:1.5rem 0;">
+            <button class="btn btn-primary" id="startBtn" style="font-size:clamp(1.2rem, 5vw, 1.8rem); padding:0.6rem 1.5rem;">✨ НАЧАТЬ ЭКЗАМЕН ✨</button>
+        </div>
+        <div id="quizInterface" class="hidden">
+            <div class="stats-grid">
+                <div class="stat">✅ Верно: <span id="correctCount">0</span></div>
+                <div class="stat">❌ Ошибки: <span id="mistakeCount">0</span></div>
+                <div class="stat">🎯 Точность: <span id="accuracyPercent">0</span>%</div>
+                <div class="stat">📝 Отвечено: <span id="answeredCount">0</span></div>
+                <div class="stat">🌙 Осталось: <span id="remainingCount">25</span></div>
+            </div>
+            <div class="progress-area">
+                <div class="progress-bar-bg"><div class="progress-fill" id="progressFill"></div></div>
+                <div class="progress-text" id="progressFraction">0/25</div>
+            </div>
+            <div class="question-card">
+                <div class="question-text" id="questionDisplay"></div>
+                <div class="options" id="optionsContainer"></div>
+                <div class="feedback" id="feedbackArea">✨ Выбери ответ и нажми «Проверить» ✨</div>
+                <div class="button-group">
+                    <button class="btn btn-primary" id="checkBtn">✅ Проверить (Enter)</button>
+                    <button class="btn" id="nextBtn">➡ Следующий (Enter)</button>
+                </div>
+            </div>
+            <button class="btn restart-btn" id="restartBtn">🔄 Перезапустить экзамен</button>
+            <div id="reviewBlock" class="review-section hidden">
+                <h3 style="color:#ff99cc; font-size:clamp(1rem, 4vw, 1.2rem);">📖 Разбор ошибок</h3>
+                <div id="mistakeList"></div>
+                <button class="btn restart-btn" id="restartReviewBtn" style="margin-top:0.8rem;">🔄 Пройти заново</button>
+            </div>
+        </div>
+        <footer>✨ магия Парижа · неоновый экзамен · 25 случайных ✨</footer>
+    </div>
+    <script>
+        // =============== ВСЕ 200 ВОПРОСОВ ===============
+        const allQuestions = [
+            // Вопросы 1–50
+            { text: "Je parle de mes études à l'université et j' ______ le français depuis deux ans. C'est ma spécialité principale.", options: ["prend", "étudie", "évite", "étudier"], correct: "étudie" },
+            { text: "À l'université, il y a un grand ______ avec des salles de cours et une bibliothèque. Les étudiants y passent beaucoup de temps.", options: ["campus", "bureau", "magasin", "atelier"], correct: "campus" },
+            { text: "Je parle de mon projet professionnel et je ______ devenir ingénieur dans le futur. C'est mon objectif.", options: ["veut", "vais", "veulent", "voulons"], correct: "vais" },
+            { text: "Elle parle de ses compétences et elle ______ bien utiliser les outils numériques. Cela l'aide dans ses études.", options: ["sens", "sait", "savoir", "saisons"], correct: "sait" },
+            { text: "Nous parlons de notre université et nous ______ beaucoup de cours intéressants. Les professeurs sont bons.", options: ["sommes", "avez", "avions", "avons"], correct: "avons" },
+            { text: "C'est un étudiant ______ étudie beaucoup et travaille sérieusement. Il réussit ses examens.", options: ["que", "où", "qui", "dont"], correct: "qui" },
+            { text: "Je connais un professeur ______ est très compétent et motivant. Il explique bien les leçons.", options: ["qui", "que", "où", "dont"], correct: "qui" },
+            { text: "Je parle d'un stage ______ j'ai fait l'année dernière dans une entreprise. C'était une bonne expérience.", options: ["qui", "que", "où", "dont"], correct: "que" },
+            { text: "Dans mon futur métier, je veux travailler dans une ______ internationale. Il y a beaucoup d'opportunités.", options: ["école", "ville", "maison", "entreprise"], correct: "entreprise" },
+            { text: "Je ______ avec une équipe tous les jours. C'est important pour moi.", options: ["travaillent", "travaille", "travailles", "travaillais"], correct: "travaille" },
+            { text: "Pour communiquer au travail, on utilise des ______ comme l'ordinateur et le téléphone. Ils sont indispensables.", options: ["personnes", "études", "outils", "chambres"], correct: "outils" },
+            { text: "Dans ce poste, les ______ sont flexibles et je peux organiser mon temps. C'est pratique.", options: ["horaires", "prix", "cours", "vacances"], correct: "horaires" },
+            { text: "Paul est étudiant à l'université. Il travaille aussi dans une petite entreprise le week-end. Il aime apprendre et développer ses compétences dans le domaine des technologies numériques. Paul étudie ______.", options: ["le sport", "l'informatique", "la cuisine", "la musique"], correct: "l'informatique" },
+            { text: "Marie parle de son projet professionnel. Elle veut aider les gens et travailler à l'hôpital dans le futur. Elle travaille beaucoup pour réussir ses examens. Marie veut ______.", options: ["voyager", "enseigner", "devenir médecin", "vendre"], correct: "devenir médecin" },
+            { text: "Ahmed est le responsable des ressources humaines. Il utilise souvent des outils numériques et communique avec ses collègues. Il aime le travail en équipe. Ahmed travaille dans ______.", options: ["une école", "une entreprise", "un magasin", "une maison"], correct: "une entreprise" },
+            { text: "Sophie travaille au sein d'entreprise dans le domaine de société de communication. Elle apprend beaucoup et développe ses compétences professionnelles. Elle est très motivée. Sophie fait ______.", options: ["une mission", "un repas", "un stage", "un jeu"], correct: "un stage" },
+            { text: "Je suis ______ en français. Je progresse chaque année.", options: ["fort", "bon", "mauvais", "lent"], correct: "bon" },
+            { text: "Dans mon travail, je dois faire plusieurs ______ chaque jour. Elles sont importantes pour l'entreprise.", options: ["tâches", "amis", "vacances", "classes"], correct: "tâches" },
+            { text: "Elle ______ avec des clients tous les jours. Elle travaille dans le commerce.", options: ["parles", "parlait", "parle", "parlera"], correct: "parle" },
+            { text: "On parle de notre parcours et nous ______ plusieurs expériences professionnelles. Cela aide pour trouver un emploi.", options: ["faisons", "allons", "sommes", "avons"], correct: "avons" },
+            { text: "Pour nos vacances, nous allons ______ une chambre d'hôtel en ligne. C'est plus simple et rapide.", options: ["réserver", "commander", "mettre", "retenir"], correct: "réserver" },
+            { text: "Je préfère cette ville parce qu'elle est ______ que la mienne. Il y a plus d'activités.", options: ["petit", "moins courte", "sale", "plus grande"], correct: "plus grande" },
+            { text: "En été, je vais souvent ______ la mer avec ma famille. Nous aimons nager et marcher sur la plage.", options: ["a", "à", "en", "au"], correct: "à" },
+            { text: "L'année dernière, nous ______ en Espagne pour les vacances. C'était un très beau voyage.", options: ["allons", "allé", "sommes allés", "allez"], correct: "sommes allés" },
+            { text: "Dans ce village, il y ______ beaucoup de touristes en été. Les restaurants sont pleins.", options: ["à", "a", "ont", "est"], correct: "a" },
+            { text: "Cette plage est ______ belle que celle de l'année dernière. Le sable est plus fin.", options: ["aussi", "moins", "plus", "très"], correct: "plus" },
+            { text: "Je préfère la montagne parce qu'elle est ______ calme que la ville. On peut se reposer.", options: ["beaucoup", "aussi", "moins", "plus"], correct: "plus" },
+            { text: "Nous écrivons une carte postale pour dire que nous ______ de bonnes vacances. On est très contents.", options: ["passons", "traversons", "apprenons", "donnons"], correct: "passons" },
+            { text: "Pour aller en France, nous prenons l'avion et nous allons ______ Paris. C'est une grande ville.", options: ["à la", "au", "en", "à"], correct: "à" },
+            { text: "Le paysage est très beau, il y a des montagnes, des lacs et beaucoup de ______. C'est très naturel.", options: ["voitures", "bureaux", "magasins", "arbres"], correct: "arbres" },
+            { text: "Paul est en vacances. Il nage tous les jours et mange dans des restaurants avec sa famille. Il aime beaucoup cet endroit. Paul est en vacances ______.", options: ["à la montagne", "à la mer", "en ville", "à l'école"], correct: "à la mer" },
+            { text: "Marie visite une ville historique. Elle regarde les monuments et prend beaucoup de photos. Elle adore découvrir de nouveaux endroits. Marie fait ______.", options: ["une histoire", "un congé", "une visite", "un repas"], correct: "une visite" },
+            { text: "Lucas est voyage avec ses amis. Ils dorment dans des tentes et font des activités dans la nature. Lucas est en ______.", options: ["hôtel", "camping", "maison", "bureau"], correct: "camping" },
+            { text: "Sophie écrit à ses parents de son voyage. Elle raconte ses vacances et décrit le paysage. Elle est très heureuse. Sophie écrit ______.", options: ["un email", "un journal", "un message", "une carte postale"], correct: "une carte postale" },
+            { text: "Je préfère cette destination parce qu'elle est ______ intéressante que l'autre. Il y a plus de choses à voir.", options: ["moins", "aussi", "plus", "très"], correct: "plus" },
+            { text: "Dans cette région, il ______ beaucoup de choses à visiter, comme des musées et des plages. C'est idéal pour les vacances.", options: ["a", "sont", "est", "y a"], correct: "y a" },
+            { text: "Nous aimons les vacances parce que nous pouvons ______ de nouvelles activités. C'est amusant.", options: ["faire", "prendre", "ouvrir", "tenir"], correct: "faire" },
+            { text: "Elle décrit la ville et dit qu'elle est très ______ et agréable. Les habitants sont gentils.", options: ["belle", "bruyant", "difficile", "petit"], correct: "belle" },
+            { text: "Pendant les vacances, nous ______ visiter Paris et découvrir les musées.", options: ["allez", "allons", "prenons", "faisons"], correct: "allons" },
+            { text: "Nous allons visiter plusieurs villes et suivre un ______ précis pour organiser notre voyage. Tout est planifié.", options: ["itinéraire", "travail", "repas", "magasin"], correct: "itinéraire" },
+            { text: "Hier, je ______ chez le médecin parce que je ne me sentais pas bien. Il m'a donné un traitement.", options: ["vais", "vais aller", "suis allé", "aller"], correct: "suis allé" },
+            { text: "Tu ______ boire beaucoup d'eau pour rester en bonne santé. C'est important chaque jour.", options: ["peux", "vas", "veux", "dois"], correct: "dois" },
+            { text: "Après le sport, elle ______ très fatiguée mais contente. Elle a bien travaillé.", options: ["a été", "est", "avait", "sera"], correct: "a été" },
+            { text: "Il faut que tu ______ plus de fruits et légumes pour être en forme.", options: ["mangés", "manges", "manger", "mangé"], correct: "manges" },
+            { text: "Je ______ du sport trois fois par semaine pour rester en bonne santé. Cela me donne de l'énergie.", options: ["pratiqué", "faire", "fait", "fais"], correct: "fais" },
+            { text: "Quand j'ai mal à la tête, je ______ un médicament pour me sentir mieux. Cela me soulage.", options: ["prend", "prends", "prenais", "pris"], correct: "prends" },
+            { text: "Elle a ______ mal au dos après le sport. Elle doit se reposer.", options: ["fait", "pris", "eu", "été"], correct: "eu" },
+            { text: "Pour se relaxer, il aime ______ de la musique calme. Cela lui fait du bien.", options: ["entendre", "écouté", "entendu", "écouter"], correct: "écouter" },
+            { text: "Nous ______ allés à la salle de sport hier soir pour faire de l'exercice. C'était difficile mais bien.", options: ["ayons", "sommes", "sommons", "avons"], correct: "sommes" },
+            { text: "Le médecin lui a conseillé de ______ ses muscles après le sport. Cela évite les douleurs.", options: ["se lever", "marcher", "relâcher", "manger"], correct: "relâcher" },
+            // Вопросы 51–100
+            { text: "Paul ne se sent pas bien aujourd'hui. Sa temperature est élevée et il tousse beaucoup. Il décide de rester à la maison et de se reposer. Paul a ______.", options: ["faim", "de la fièvre", "du sport", "du travail"], correct: "de la fièvre" },
+            { text: "Olivia fait du sport tous les jours. Elle mange équilibré et dort bien. Olivia est ______.", options: ["en pleine forme", "fatiguée", "malade", "triste"], correct: "en pleine forme" },
+            { text: "Philippe ne peut pas parler facilement. Il prend un sirop pour aller mieux. Philippe a ______.", options: ["mal au dos", "mal aux yeux", "mal au pied", "mal à la gorge"], correct: "mal à la gorge" },
+            { text: "Aurélie est stressée à cause du travail. Elle décide de faire du yoga. Elle se sent mieux après. Aurélie veut ______.", options: ["travailler", "se détendre", "courir", "manger"], correct: "se détendre" },
+            { text: "Tu ne ______ pas manger trop de sucre si tu veux être en bonne santé. C'est mauvais pour le corps.", options: ["veux", "vas", "peux", "dois"], correct: "dois" },
+            { text: "Tu as mal à la tête. Je pense que tu ______ aller chez le médecin demain. C'est plus sûr.", options: ["peux", "vas", "devrais", "fais"], correct: "vas" },
+            { text: "Il ______ mieux après avoir pris ce médicament. Le traitement a bien fonctionné.", options: ["se sent", "se réveille", "sens", "sentant"], correct: "se sent" },
+            { text: "Nous avons ______ beaucoup d'eau après le sport pour récupérer. C'est important.", options: ["mangé", "pris", "bu", "fait"], correct: "bu" },
+            { text: "Elle ______ de se coucher tôt pour être en forme le lendemain. C'est une bonne habitude.", options: ["décidait", "décide", "décidant", "décidé"], correct: "décide" },
+            { text: "Pour être en bonne santé, il est important de ______ de bonnes habitudes chaque jour. Cela change la vie.", options: ["prendre", "aller", "faire", "adopter"], correct: "adopter" },
+            { text: "Hier, j'______ un nouvel appartement dans le centre-ville après plusieurs visites. Il est bien situé.", options: ["ai cherché", "ai trouvé", "allais", "avais trouvé"], correct: "ai trouvé" },
+            { text: "Dans cet appartement, il y a un grand salon où je ______ mes amis le week-end. C'est très agréable.", options: ["invitation", "invité", "invite", "inviter"], correct: "invite" },
+            { text: "Tu ______ faire le ménage régulièrement pour garder l'appartement propre. C'est une règle importante.", options: ["peux", "dois", "veux", "vas"], correct: "dois" },
+            { text: "Dans cette résidence, il est interdit de ______ du bruit après 22h. Les voisins doivent se reposer.", options: ["chanter", "fais", "prendre", "faire"], correct: "faire" },
+            { text: "Je ne trouve plus mes clés, je ne ______ pas où je les ai mises hier soir. C'est stressant.", options: ["comprends", "sais", "sais pas", "connais"], correct: "sais" },
+            { text: "Ce meuble est très lourd, je ne peux pas ______ seul. J'ai besoin d'aide.", options: ["le portat", "porter le", "le porter", "le porte"], correct: "le porter" },
+            { text: "Dans la cuisine, j'ai acheté un nouveau réfrigérateur parce que l'ancien ne ______ plus. Il était en panne.", options: ["fonctionne", "fonctionnait", "fonctionner", "fonctionné"], correct: "fonctionnait" },
+            { text: "Nous avons appelé un technicien pour réparer la machine à laver qui ______ en panne depuis deux jours. C'était urgent.", options: ["était", "est", "sera", "a été"], correct: "était" },
+            { text: "Il faut que tu ______ la fenêtre quand il fait froid pour garder la chaleur dans la pièce. C'est important.", options: ["ferment", "fermé", "fermer", "fermes"], correct: "fermes" },
+            { text: "Dans mon appartement, il y a plusieurs pièces, dont une chambre où je ______ tous les soirs. C'est calme.", options: ["dort", "dors", "dorme", "dormi"], correct: "dors" },
+            { text: "Olivier a déménagé dans un nouvel appartement. Il doit encore acheter le canapé et installer ses affaires. Il trouve que son logement est confortable. Olivier doit encore ______.", options: ["travailler", "cuisiner", "voyager", "acheter des meubles"], correct: "acheter des meubles" },
+            { text: "Laure vit avec deux étudiantes. Elles partagent la cuisine et le salon. Elles respectent les règles de vie commune. Laure vit en ______.", options: ["famille", "hôtel", "colocation", "bureau"], correct: "colocation" },
+            { text: "Néo a un problème. Il fait froid dans son appart'. Il appelle un professionnel pour réparer le système. Néo a un problème avec ______.", options: ["la cuisine", "le chauffage", "la porte", "la table"], correct: "le chauffage" },
+            { text: "Nadia écrit un message à son voisin à cause du bruit hier soir. Elle promet de faire plus attention. Nadia veut ______.", options: ["inviter son voisin", "s'excuser", "partir", "travailler"], correct: "s'excuser" },
+            { text: "Dans cet immeuble, il est important de ______ les règles pour bien vivre avec les voisins. Cela évite les conflits.", options: ["ignorer", "oublier", "changer", "respecter"], correct: "respecter" },
+            { text: "Je vais louer un appartement qui est bien situé et très ______. Il y a beaucoup de lumière.", options: ["sombre", "petit", "clair", "bruyant"], correct: "clair" },
+            { text: "Le canapé que j'ai acheté est très confortable, je ______ utilise tous les jours pour me reposer.", options: ["l'", "le", "la", "les"], correct: "l'" },
+            { text: "Nous devons expliquer le problème au propriétaire pour qu'il ______ une solution rapidement. C'est urgent.", options: ["trouves", "trouve", "trouvera", "trouvé"], correct: "trouve" },
+            { text: "Dans cette maison, il y a un jardin où nous ______ souvent du temps en famille. C'est très agréable.", options: ["passerons", "passer", "passons", "passé"], correct: "passons" },
+            { text: "Après avoir nettoyé toute la maison, je me ______ fatigué mais satisfait du résultat. C'est bien fait.", options: ["senti", "sens", "sent", "sentir"], correct: "sens" },
+            { text: "Aujourd'hui, je ______ à 8h, puis je prends un café avant de commencer mes activités. C'est ma routine quotidienne.", options: ["me lève", "me lave", "lève", "levier"], correct: "me lève" },
+            { text: "Le week-end, nous ______ souvent au cinéma avec des amis pour nous détendre. C'est une activité que nous aimons beaucoup.", options: ["allions", "allons", "allez", "aller"], correct: "allons" },
+            { text: "À quelle heure ______ tu te coucher le soir quand tu travailles le lendemain ? C'est important de bien dormir.", options: ["viens", "vais", "vas", "aller"], correct: "vas" },
+            { text: "Je viens de ______ mes devoirs, maintenant je peux sortir avec mes amis. Je suis libre ce soir.", options: ["choisir", "finir", "fini", "choisi"], correct: "finir" },
+            { text: "Elle ______ parfois du sport après le travail pour rester en forme. Cela lui fait du bien.", options: ["faisait", "faisais", "a fait", "fait"], correct: "fait" },
+            { text: "Nous ne ______ jamais en retard, car nous organisons bien notre temps.", options: ["allons", "sommes", "êtes", "sont"], correct: "sommes" },
+            { text: "Je voudrais sortir ce soir, mais je ne ______ pas, je suis un peu fatigué. Peut-être demain.", options: ["peuves", "veux", "peux", "vais"], correct: "peux" },
+            { text: "Ils ______ de regarder une série après le dîner, car ils aiment se détendre ensemble. C'est leur habitude.", options: ["choisisse", "choisissent", "choisir", "choisi"], correct: "choisissent" },
+            { text: "Paul se réveille tôt, prend son petit déjeuner et part travailler. Le soir, il regarde la télévision et se couche vers 21 h. Il a une routine régulière. Paul se couche ______.", options: ["tôt", "tard", "rarement", "jamais"], correct: "tôt" },
+            { text: "Rouslan aime sortir avec ses amis le week-end. Il va au restaurant ou au cinéma tous les soirs. Il adore les activités sociales. Rouslan sort ______.", options: ["rarement", "souvent", "jamais", "toujours seule"], correct: "souvent" },
+            { text: "Théo vient de finir son travail. Il veut maintenant se détendre à la maison et écouter de la musique. Il est un peu fatigué. Théo veut ______.", options: ["travailler", "se reposer", "sortir", "courir"], correct: "se reposer" },
+            { text: "Daphne invite son amie au théâtre ce soir. Son amie accepte avec plaisir. Elles vont passer une bonne soirée. Daphne ______ une sortie.", options: ["refuse", "annule", "propose", "oublie"], correct: "propose" },
+            { text: "Quand je suis libre, j'aime ______ des vidéos sur Internet ou lire un livre intéressant. Cela dépend de mon humeur.", options: ["regarde", "regarder", "regardé", "regardes"], correct: "regarder" },
+            { text: "Il est 18h, je ______ de rentrer chez moi après le travail. Je suis fatigué.", options: ["vient", "vais", "viens", "aller"], correct: "viens" },
+            { text: "Nous ______ parfois une promenade après le dîner pour nous détendre. C'est agréable.", options: ["faisons", "faisions", "fait", "faire"], correct: "faisons" },
+            { text: "Tu ______ venir avec nous ce soir ou tu préfères rester à la maison ? Dis-moi.", options: ["veut", "veux", "peux", "veules"], correct: "veux" },
+            { text: "Elle ne sort ______ le soir, car elle préfère rester tranquille chez elle. C'est son choix.", options: ["souvent", "parfois", "toujours", "jamais"], correct: "jamais" },
+            { text: "Après le travail, il ______ du sport ou il se repose à la maison. Cela dépend de son énergie.", options: ["faille", "fait", "faire", "fais"], correct: "fait" },
+            { text: "Je vais au cinéma ce soir, tu ______ venir avec moi ? Le film est très intéressant.", options: ["ceux", "vas", "veux", "peux"], correct: "peux" },
+            // Вопросы 101–150
+            { text: "Nous allons sortir, mais nous ne savons pas encore où nous ______. Peut-être au restaurant.", options: ["allions", "allons", "allez", "aller"], correct: "allons" },
+            { text: "Je vais ______ une nouvelle veste demain parce qu'il fait plus froid. Elle est très à la mode.", options: ["achats", "acheté", "achète", "acheter"], correct: "acheter" },
+            { text: "Cette robe est très ______ et confortable, elle est parfaite pour l'été. J'aime aussi sa couleur.", options: ["beau", "belle", "beaux", "belles"], correct: "belle" },
+            { text: "Je préfère ______ chaussures noires plutôt que celles-ci. Elles sont plus élégantes.", options: ["ceux", "cette", "ces", "cet"], correct: "ces" },
+            { text: "Il va ______ ce pantalon au magasin parce qu'il est trop petit. La taille ne convient pas.", options: ["acheter", "vendre", "remporter", "rendre"], correct: "vendre" },
+            { text: "Cette chemise est moins ______ que l'autre, mais elle est plus pratique pour tous les jours. Je la porte souvent.", options: ["cher", "chères", "chers", "chère"], correct: "chère" },
+            { text: "Je trouve que ce T-shirt est très ______, il est parfait pour le sport. Il est léger et agréable.", options: ["flexible", "pratique", "souple", "grand"], correct: "pratique" },
+            { text: "Nous allons ______ au centre commercial pour acheter des vêtements. Il y a beaucoup de choix.", options: ["allées", "allons", "aller", "allé"], correct: "aller" },
+            { text: "Paul veut acheter une nouvelle paire de chaussures. Il cherche quelque chose de pratique et pas trop cher. Il compare plusieurs modèles dans le magasin. Paul cherche des chaussures ______.", options: ["confortables", "chères", "petites", "vieilles"], correct: "confortables" },
+            { text: "Marie regarde la météo avant de sortir. Ça caille et il y a du vent. Elle décide de mettre un manteau chaud. Marie met un manteau parce qu'il fait ______.", options: ["chaud", "beau", "froid", "frais"], correct: "froid" },
+            { text: "Thanos a acheté un sac très élégant. Il l'utilise tous les jours pour aller au travail. Il est très satisfait de son achat. Le sac de Thanos est en ______.", options: ["plastique", "cuir", "papier", "verre"], correct: "cuir" },
+            { text: "Julie regarde un site de vêtements en ligne. Elle veut acheter une tenue pour une soirée. Elle hésite entre deux modèles. Julie veut acheter ______.", options: ["un pantalon", "un manteau", "une robe", "un sac"], correct: "une robe" },
+            { text: "Lucas parle avec un vendeur dans un magasin. Il demande combien coûte le T-shirt. Le vendeur lui donne des informations. Lucas parle du ______ du T-shirt.", options: ["couleur", "prix", "poids", "goût"], correct: "prix" },
+            { text: "Ce pantalon est trop grand, je vais ______ une taille plus petite. Celui-ci ne me va pas bien.", options: ["prennes", "prendre", "prends", "pris"], correct: "prendre" },
+            { text: "Je préfère ce manteau parce qu'il est ______ chaud que l'autre. Il est plus adapté à l'hiver.", options: ["plus", "moins", "aussi", "très"], correct: "plus" },
+            { text: "Tu peux ______ ce pull, il est vraiment confortable et à la mode. Je te le conseille.", options: ["mettant", "mettre", "mets", "mis"], correct: "mettre" },
+            { text: "Ces chaussures sont très ______, elles ne font pas mal aux pieds. Je peux marcher longtemps.", options: ["convenientes", "confort", "confortables", "conforter"], correct: "confortables" },
+            { text: "Je vais ______ voir cette nouvelle collection demain avec mes amis. Elle a l'air intéressante.", options: ["venir", "aller", "vais", "allé"], correct: "aller" },
+            { text: "Ce sac est plus lourd ______ celui que j'ai déjà. Il n'est pas très pratique.", options: ["qu'", "où", "qui", "que"], correct: "que" },
+            { text: "Emma regarde les vêtements dans un magasin. Elle aime les couleurs intenses et les styles modernes. Elle choisit un pull rouge. Emma aime les couleurs ______.", options: ["sombres", "simples", "tristes", "vives"], correct: "vives" },
+            { text: "Thomas prépare ses vêtements pour l'hiver. Il veut être à l'aise et ne pas avoir froid. Thomas choisit des vêtements ______.", options: ["légers", "chauds", "petits", "courts"], correct: "chauds" },
+            { text: "Pour aller au centre-ville, tu dois ______ le métro et descendre à la troisième station. C'est plus rapide.", options: ["prendre", "prende", "prends", "pris"], correct: "prendre" },
+            { text: "Cette ville est très grande, ______ il y a beaucoup de transports en commun. C'est pratique pour se déplacer.", options: ["mais", "donc", "ou", "car"], correct: "donc" },
+            { text: "À Paris, il y a beaucoup de monuments célèbres, ______ la tour Eiffel et le Louvre. Les touristes les visitent.", options: ["mais", "où", "comme", "avec"], correct: "comme" },
+            { text: "Dans mon quartier, il y a un parc ______ je vais souvent pour me détendre. C'est calme et agréable.", options: ["que", "dont", "qui", "où"], correct: "où" },
+            { text: "Tu ______ tout droit, puis tu tournes à gauche pour trouver le musée. C'est facile à trouver.", options: ["vais", "vas", "aller", "allé"], correct: "vas" },
+            { text: "Prenez le bus numéro 5, puis ______ à l'arrêt \"Centre\". C'est là que se trouve le magasin.", options: ["descendait", "descend", "descendez", "descendre"], correct: "descendez" },
+            { text: "Cette rue est très animée, ______ il y a beaucoup de magasins et de restaurants. On peut tout faire à pied.", options: ["par", "car", "mais", "ou"], correct: "car" },
+            { text: "Paul est dans une nouvelle ville. Il demande son chemin pour prendre le train. Une personne lui explique comment y aller. Paul cherche ______.", options: ["la gare", "un restaurant", "un hôtel", "un parc"], correct: "la gare" },
+            { text: "Coco habite dans un quartier avec peu de voitures. Elle aime marcher dans les rues tranquilles. Elle trouve son quartier agréable. Le quartier de Coco est ______.", options: ["bruyant", "calme", "grand", "rapide"], correct: "calme" },
+            { text: "Mark prend ce transport tous les jours pour aller au travail. C'est rapide et pratique. Il évite les embouteillages car il est souterrain. Mark utilise ______.", options: ["la voiture", "le train", "le vélo", "le métro"], correct: "le métro" },
+            { text: "Sophie est dans une ville touristique. Elle prend un bus pour voir les monuments. Elle découvre plusieurs lieux célèbres. Sophie fait ______.", options: ["du sport", "une visite", "du travail", "des courses"], correct: "une visite" },
+            { text: "Dans cette ville, il y a ______ (100.000) habitants. C'est une grande métropole.", options: ["cent milles", "cent mille", "cent", "mille cent"], correct: "cent mille" },
+            { text: "Ce village est très petit, il y a seulement ______ (200) habitants. Tout le monde se connaît.", options: ["deux cents", "deux cent", "deux mille", "vingt mille"], correct: "deux cents" },
+            { text: "Nous allons à la gare ______ bus, car c'est plus rapide que la marche. Le trajet est court.", options: ["au", "en", "à", "par"], correct: "en" },
+            { text: "Il faut marcher cinq minutes, ______ tourner à droite pour arriver au café. C'est très simple.", options: ["et", "mais", "puis", "car"], correct: "puis" },
+            { text: "Cette ville est ancienne, ______ elle a aussi des bâtiments modernes. Le mélange est intéressant.", options: ["donc", "mais", "car", "ou"], correct: "mais" },
+            { text: "Tu peux aller au musée ______ métro ou à pied si tu préfères marcher. Les deux options sont possibles.", options: ["en", "à", "avec", "par"], correct: "en" },
+            { text: "Dans cette rue, il y a beaucoup de cafés ______ les gens aiment se retrouver. L'ambiance est agréable.", options: ["que", "où", "qui", "dont"], correct: "où" },
+            { text: "Pour aller à l'hôtel, tu ______ à gauche après le pont, puis tu continues tout droit. C'est indiqué.", options: ["tourne", "tourner", "tournes", "tourné"], correct: "tournes" },
+            { text: "Cette avenue est très large, ______ elle est souvent pleine de voitures. Il y a beaucoup de circulation.", options: ["donc", "mais", "car", "et"], correct: "mais" },
+            { text: "Au supermarché, je dois ______ des légumes et des fruits pour préparer le dîner. Je fais une liste avant.", options: ["achètes", "acheter", "achète", "acheté"], correct: "acheter" },
+            { text: "Je voudrais ______ pain, s'il vous plaît. C'est pour le petit déjeuner.", options: ["d'", "du", "de la", "des"], correct: "du" },
+            { text: "Elle boit ______ eau après le sport pour rester hydratée. C'est important pour la santé.", options: ["du", "des", "de la", "de l'"], correct: "de l'" },
+            { text: "Nous avons acheté ______ pommes pour faire une tarte. Elles sont très bonnes.", options: ["du", "des", "de la", "de"], correct: "des" },
+            { text: "Je n'ai pas ______ sucre à la maison, je dois en acheter. Il n'en reste plus.", options: ["du", "des", "de", "le"], correct: "de" },
+            { text: "Au restaurant, je vais ______ un plat principal et un dessert. J'ai très faim.", options: ["prenait", "prendre", "prends", "pris"], correct: "prendre" },
+            { text: "Tu peux ______ par carte ou en espèces, comme tu préfères. Les deux sont acceptés.", options: ["payer", "payes", "paies", "payé"], correct: "payer" },
+            { text: "Nous allons ______ au restaurant ce soir pour fêter un anniversaire. C'est une occasion spéciale.", options: ["visiter", "aller", "allons", "allé"], correct: "aller" },
+            { text: "Je prends une soupe ______ entrée, puis un plat chaud. Le menu est équilibré.", options: ["à", "avec", "de", "en"], correct: "en" },
+            // Вопросы 151–200
+            { text: "Eric fait les courses au marché. Il achète des légumes et du fromage. Il prépare un bon repas chez lui. Eric achète des produits ______.", options: ["chers", "frais", "froids", "secs"], correct: "frais" },
+            { text: "Camille est au restaurant avec ses amis. Elle regarde le menu et choisit un plat. Elle veut aussi un dessert. Camille ______ un plat.", options: ["vend", "donne", "commande", "trouve"], correct: "commande" },
+            { text: "Bruno n'a plus de pain à la maison. Bruno va à la ______.", options: ["boucherie", "boulangerie", "pharmacie", "banque"], correct: "boulangerie" },
+            { text: "Lucie fait le dîner pour sa famille. Elle cuisine des pâtes et une salade. Tout le monde est content. Lucie ______ le dîner.", options: ["mange", "vend", "achète", "prépare"], correct: "prépare" },
+            { text: "Je mange ______ viande, mais pas tous les jours. J'essaie de varier mon alimentation.", options: ["de là", "de la", "du", "des"], correct: "de la" },
+            { text: "Nous avons besoin ______ acheter du lait et des œufs. Il manque des produits.", options: ["d'", "de", "à", "pour"], correct: "d'" },
+            { text: "Je prends un café ______ le repas pour bien terminer. C'est une habitude.", options: ["avant", "après", "pendant", "sans"], correct: "après" },
+            { text: "Ce plat est très bon, je vais en ______ encore un peu. Il est délicieux.", options: ["prendere", "prends", "prendre", "pris"], correct: "prendre" },
+            { text: "Ils mangent ______ restaurant presque tous les week-ends. Ils aiment sortir.", options: ["a", "au", "à", "en"], correct: "au" },
+            { text: "Je préfère manger à la maison ______ c'est plus économique. Cela coûte moins cher.", options: ["parce que", "mais", "ou", "et"], correct: "parce que" },
+            { text: "Pour le dessert, je choisis ______ gâteau au chocolat. Il a l'air délicieux.", options: ["une", "un", "du", "des"], correct: "un" },
+            { text: "J'______ dans un petit appartement près du centre-ville. Il est bien situé.", options: ["habite", "habitait", "habites", "habiter"], correct: "habite" },
+            { text: "Dans mon quartier, il y a ______ cinéma et plusieurs magasins. C'est très pratique.", options: ["le", "un", "une", "des"], correct: "un" },
+            { text: "Je vais souvent au parc avec ______ amis le week-end. Nous aimons marcher ensemble.", options: ["ses", "mon", "mes", "nos"], correct: "mes" },
+            { text: "Elle ______ la musique classique, mais elle n'aime pas le rock. Elle écoute souvent des concerts.", options: ["aimait", "aime", "aimes", "aimé"], correct: "aime" },
+            { text: "Nous ______ le sport après l'école pour rester en forme. C'est une bonne habitude.", options: ["aimions", "aimons", "aime", "aimer"], correct: "aimons" },
+            { text: "C'est ______ frère, il travaille dans une grande entreprise. Il habite près de chez moi.", options: ["mon", "le", "ma", "mes"], correct: "mon" },
+            { text: "Ma sœur est ______, elle travaille à l'hôpital et aide les patients. Elle aime son métier.", options: ["médecine", "médecin", "coiffeuse", "vendeuse"], correct: "médecin" },
+            { text: "Dans cette rue, il y a ______ boulangerie où j'achète du pain tous les jours. Le pain est bon.", options: ["un", "le", "des", "une"], correct: "une" },
+            { text: "Je n'aime pas ______ bruit de la ville, je préfère le calme de la campagne. C'est plus reposant.", options: ["un", "le", "une", "des"], correct: "le" },
+            { text: "Tu ______ habites où exactement ? Près du centre ou en banlieue ?", options: ["vas", "habiter", "habites", "habité"], correct: "habites" },
+            { text: "Paul habite dans un quartier avec beaucoup de magasins et de restaurants. Il sort souvent avec ses amis le soir. Le quartier de Paul est ______.", options: ["calme", "animé", "petit", "vide"], correct: "animé" },
+            { text: "Marie vit dans une maison avec un jardin. Elle aime passer du temps avec ses parents. Marie vit avec ______.", options: ["ses amis", "ses collègues", "sa famille", "ses voisins"], correct: "sa famille" },
+            { text: "Jules travaille dans un bureau en ville. Il aime son travail et ses collègues. Il va au travail tous les jours en bus. Jules est ______.", options: ["étudiant", "employé", "touriste", "vendeur"], correct: "employé" },
+            { text: "Sophie va souvent voir des films le week-end. Elle aime les comédies. Sophie aime ______.", options: ["le sport", "la musique", "la cuisine", "le cinéma"], correct: "le cinéma" },
+            { text: "Dans ma famille, nous avons ______ chien très gentil. Il joue avec nous tous les jours.", options: ["du", "un", "une", "des"], correct: "un" },
+            { text: "Je parle souvent avec ______ parents le soir. Nous discutons de la journée.", options: ["mes", "me", "mon", "ma"], correct: "mes" },
+            { text: "Il est professeur et sa femme est ______ aussi. Ils travaillent dans la même université.", options: ["professeur", "professeure", "professeurs", "professeures"], correct: "professeure" },
+            { text: "Nous habitons dans ______ maison assez grande avec plusieurs pièces. Elle est confortable.", options: ["un", "des", "une", "le"], correct: "une" },
+            { text: "Tu aimes ______ musique moderne ou la musique classique ? Tu dois choisir.", options: ["l'", "la", "le", "les"], correct: "la" },
+            { text: "Je déteste ______ bruit quand je travaille, j'ai besoin de silence. Cela me dérange.", options: ["la", "des", "un", "le"], correct: "le" },
+            { text: "Je ______ Maria, je viens d'Espagne et j'habite à Madrid.", options: ["s'appelle", "suis", "es", "est"], correct: "suis" },
+            { text: "Tu ______ comment ? Je m'appelle Paul.", options: ["appelle", "t'appelles", "s'appelle", "appelons"], correct: "t'appelles" },
+            { text: "Elle est ______, elle vient de France et parle français.", options: ["espagnole", "italienne", "française", "allemande"], correct: "française" },
+            { text: "Berlin est la capitale de ______.", options: ["France", "l'Allemagne", "l'Espagne", "l'Italie"], correct: "l'Allemagne" },
+            { text: "Je viens ______ Italie, mais j'habite en France maintenant.", options: ["de l'", "de", "du", "des"], correct: "de l'" },
+            { text: "Il est ______, il vient du Japon et il habite à Tokyo.", options: ["chinois", "japonais", "coréen", "vietnamien"], correct: "japonais" },
+            { text: "Nous sommes ______, nous habitons à Tashkent.", options: ["français", "allemands", "italiens", "ouzbek"], correct: "ouzbek" },
+            { text: "La capitale de l'Espagne est ______.", options: ["Barcelone", "Madrid", "Valence", "Séville"], correct: "Madrid" },
+            { text: "Elle vient ______ États-Unis et elle parle anglais.", options: ["de", "du", "des", "d'"], correct: "des" },
+            { text: "Tu viens de Venise. Tu es ______ ?", options: ["française", "italien", "espagnol", "allemand"], correct: "italien" },
+            { text: "Hugo habite à Paris et travaille dans un bureau. Il aime boire du vin. Paul est ______.", options: ["français", "espagnol", "italien", "allemand"], correct: "français" },
+            { text: "Anna habite à Berlin et parle allemand et anglais. Elle apprend aussi le français. Anna vient ______.", options: ["de France", "d'Allemagne", "d'Italie", "d'Espagne"], correct: "d'Allemagne" },
+            { text: "Omar est égyptien. Il habite en Égypte. Il travaille dans le tourisme. La capitale de l'Égypte est ______.", options: ["Le Caire", "Alexandrie", "Louxor", "Gizeh"], correct: "Le Caire" },
+            { text: "Véra habite à Madrid et adore la nourriture piquante. Elle voyage souvent en Europe. Véra est ______.", options: ["française", "espagnole", "italienne", "allemande"], correct: "espagnole" },
+            { text: "Nous venons ______ France, mais nous habitons en Italie maintenant.", options: ["du", "d'", "des", "de la"], correct: "de la" },
+            { text: "Ils sont ______, ils viennent de Chine et habitent à Pékin.", options: ["japonais", "chinois", "coréens", "vietnamiens"], correct: "chinois" },
+            { text: "La capitale de l'Italie est ______.", options: ["Milan", "Venise", "Naples", "Rome"], correct: "Rome" },
+            { text: "Je suis ______, je viens du Canada et je parle français et anglais.", options: ["américain", "canadien", "britannique", "australien"], correct: "canadien" },
+            { text: "Tu viens ______ Brésil ? Oui, je suis brésilien.", options: ["du", "de", "des", "d'"], correct: "du" },
+            { text: "La capitale du Japon est ______.", options: ["Osaka", "Tokyo", "Kyoto", "Hiroshima"], correct: "Tokyo" }
+        ];
+
+        // ========== ЛОГИКА ЭКЗАМЕНА ==========
+        let examQuestions = [];
+        let currentIndex = 0;
+        let userAnswers = [];
+        let quizActive = false;
+        let selectedAnswer = null;
+
+        const startScreenDiv = document.getElementById("startScreen");
+        const quizInterfaceDiv = document.getElementById("quizInterface");
+        const startBtn = document.getElementById("startBtn");
+        const questionDisplay = document.getElementById("questionDisplay");
+        const optionsContainer = document.getElementById("optionsContainer");
+        const feedbackArea = document.getElementById("feedbackArea");
+        const checkBtn = document.getElementById("checkBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const restartBtn = document.getElementById("restartBtn");
+        const restartReviewBtn = document.getElementById("restartReviewBtn");
+        const reviewBlock = document.getElementById("reviewBlock");
+        const mistakeListDiv = document.getElementById("mistakeList");
+        const correctSpan = document.getElementById("correctCount");
+        const mistakeSpan = document.getElementById("mistakeCount");
+        const accuracySpan = document.getElementById("accuracyPercent");
+        const answeredSpan = document.getElementById("answeredCount");
+        const remainingSpan = document.getElementById("remainingCount");
+        const progressFill = document.getElementById("progressFill");
+        const progressFraction = document.getElementById("progressFraction");
+        const totalSpan = document.getElementById("totalSpan");
+        const quoteBox = document.getElementById("quoteBox");
+
+        const quotes = [
+            "✨ Французский — язык любви и элегантности.",
+            "📖 Каждый правильный ответ приближает тебя к Парижу.",
+            "🌙 Неоновая магия поможет сдать экзамен на отлично!",
+            "💪 Ты справишься, ты умница!",
+            "🎓 Учись ярко, живи как в Париже.",
+            "🗼 La Tour Eiffel тебя ждёт — учи французский!",
+            "✨ Ошибки — это ступени к мастерству."
+        ];
+
+        let quoteInterval = null;
+
+        function updateQuote() {
+            const idx = Math.floor(Math.random() * quotes.length);
+            if (quoteBox) quoteBox.innerHTML = `✨ ${quotes[idx]} ✨`;
+        }
+
+        function startQuotes() {
+            if (quoteInterval) clearInterval(quoteInterval);
+            updateQuote();
+            quoteInterval = setInterval(updateQuote, 12000);
+        }
+
+        function stopQuotes() {
+            if (quoteInterval) clearInterval(quoteInterval);
+        }
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function shuffleOptions(q) {
+            let shuffledOptions = shuffleArray([...q.options]);
+            return { text: q.text, options: shuffledOptions, correct: q.correct };
+        }
+
+        function initExam() {
+            let shuffledAll = shuffleArray([...allQuestions]);
+            examQuestions = shuffledAll.slice(0, 25);
+            examQuestions = examQuestions.map(q => shuffleOptions(q));
+            currentIndex = 0;
+            userAnswers = new Array(examQuestions.length).fill(null);
+            selectedAnswer = null;
+            if (reviewBlock) reviewBlock.classList.add("hidden");
+            updateStats();
+            renderCurrentQuestion();
+        }
+
+        function updateStats() {
+            let correct = 0, wrong = 0, answeredCount = 0;
+            for (let i = 0; i < examQuestions.length; i++) {
+                if (userAnswers[i] !== null) {
+                    answeredCount++;
+                    if (userAnswers[i].isCorrect) correct++;
+                    else wrong++;
+                }
+            }
+            const accuracy = answeredCount === 0 ? 0 : Math.round((correct / answeredCount) * 100);
+            correctSpan.innerText = correct;
+            mistakeSpan.innerText = wrong;
+            accuracySpan.innerText = accuracy;
+            answeredSpan.innerText = answeredCount;
+            remainingSpan.innerText = examQuestions.length - answeredCount;
+            totalSpan.innerText = `📘 всего: ${examQuestions.length}`;
+            const percent = (answeredCount / examQuestions.length) * 100;
+            progressFill.style.width = percent + "%";
+            progressFraction.innerText = `${answeredCount}/${examQuestions.length}`;
+        }
+
+        function renderCurrentQuestion() {
+            if (!quizActive) return;
+            if (currentIndex >= examQuestions.length) {
+                finishExam();
+                return;
+            }
+            const q = examQuestions[currentIndex];
+            questionDisplay.innerText = q.text;
+            optionsContainer.innerHTML = "";
+            const letters = ['A', 'B', 'C', 'D'];
+            q.options.forEach((opt, idx) => {
+                const div = document.createElement("div");
+                div.className = "option";
+                div.innerHTML = `<span style="font-weight:bold; margin-right:12px;">${letters[idx]}.</span> ${opt}`;
+                div.onclick = () => {
+                    if (userAnswers[currentIndex] !== null) {
+                        feedbackArea.innerHTML = "⚠️ Ты уже ответил на этот вопрос.";
+                        return;
+                    }
+                    document.querySelectorAll(".option").forEach(el => el.classList.remove("selected"));
+                    div.classList.add("selected");
+                    selectedAnswer = opt;
+                };
+                optionsContainer.appendChild(div);
+            });
+            if (userAnswers[currentIndex] !== null) {
+                const saved = userAnswers[currentIndex];
+                document.querySelectorAll(".option").forEach(el => {
+                    el.style.pointerEvents = "none";
+                    if (el.innerText.includes(saved.selected)) el.classList.add("selected");
+                });
+                feedbackArea.innerHTML = saved.isCorrect ? `✅ Верно: ${saved.selected}` : `❌ Неверно. Правильно: ${examQuestions[currentIndex].correct}`;
+                checkBtn.disabled = true;
+            } else {
+                document.querySelectorAll(".option").forEach(el => el.style.pointerEvents = "auto");
+                feedbackArea.innerHTML = "✨ Выбери ответ → «Проверить»";
+                checkBtn.disabled = false;
+            }
+            updateStats();
+        }
+
+        function checkAnswer() {
+            if (!quizActive) return;
+            if (userAnswers[currentIndex] !== null) {
+                feedbackArea.innerHTML = "Уже отвечено";
+                return;
+            }
+            if (!selectedAnswer) {
+                feedbackArea.innerHTML = "⚠️ Выбери вариант!";
+                return;
+            }
+            const q = examQuestions[currentIndex];
+            const isCorrect = (selectedAnswer === q.correct);
+            userAnswers[currentIndex] = { selected: selectedAnswer, isCorrect: isCorrect };
+            renderCurrentQuestion();
+        }
+
+        function nextQuestion() {
+            if (!quizActive) return;
+            if (userAnswers[currentIndex] === null) {
+                feedbackArea.innerHTML = "⚠️ Сначала ответь на вопрос.";
+                return;
+            }
+            if (currentIndex + 1 < examQuestions.length) {
+                currentIndex++;
+                selectedAnswer = null;
+                renderCurrentQuestion();
+            } else {
+                finishExam();
+            }
+        }
+
+        function finishExam() {
+            const total = examQuestions.length;
+            let correct = 0, wrong = 0;
+            for (let i = 0; i < total; i++) {
+                if (userAnswers[i] !== null && userAnswers[i].isCorrect) correct++;
+                else if (userAnswers[i] !== null && !userAnswers[i].isCorrect) wrong++;
+            }
+            const accuracy = total === 0 ? 0 : Math.round((correct / total) * 100);
+            let mistakesHtml = '<h3 style="color:#ff99cc;">📖 Разбор ошибок</h3>';
+            let hasMistakes = false;
+            for (let i = 0; i < total; i++) {
+                if (userAnswers[i] !== null && !userAnswers[i].isCorrect) {
+                    hasMistakes = true;
+                    mistakesHtml += `<div class="mistake-item"><strong>❓ Вопрос ${i+1}:</strong> ${examQuestions[i].text}<br>👉 Твой ответ: ${userAnswers[i].selected}<br>✅ Правильный: ${examQuestions[i].correct}</div>`;
+                } else if (userAnswers[i] === null) {
+                    hasMistakes = true;
+                    mistakesHtml += `<div class="mistake-item"><strong>❓ Вопрос ${i+1}:</strong> ${examQuestions[i].text}<br>👉 Не отвечен<br>✅ Правильный: ${examQuestions[i].correct}</div>`;
+                }
+            }
+            if (!hasMistakes) mistakesHtml += '<p>✨ Идеально! Нет ошибок ✨</p>';
+            mistakeListDiv.innerHTML = mistakesHtml;
+            reviewBlock.classList.remove("hidden");
+            questionDisplay.innerText = `🎉 Экзамен завершён! 🎉\nПравильных: ${correct} из ${total}\nТочность: ${accuracy}%`;
+            optionsContainer.innerHTML = "";
+            feedbackArea.innerHTML = "";
+            checkBtn.disabled = true;
+            nextBtn.disabled = true;
+        }
+
+        function restartExam() {
+            initExam();
+        }
+
+        function startExam() {
+            startScreenDiv.classList.add("hidden");
+            quizInterfaceDiv.classList.remove("hidden");
+            quizActive = true;
+            startQuotes();
+            initExam();
+        }
+
+        startBtn.addEventListener("click", startExam);
+        checkBtn.addEventListener("click", checkAnswer);
+        nextBtn.addEventListener("click", nextQuestion);
+        restartBtn.addEventListener("click", () => { restartExam(); reviewBlock.classList.add("hidden"); });
+        restartReviewBtn.addEventListener("click", () => { restartExam(); reviewBlock.classList.add("hidden"); });
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                if (!quizActive && !startScreenDiv.classList.contains("hidden")) {
+                    startExam();
+                } else if (quizActive && !quizInterfaceDiv.classList.contains("hidden")) {
+                    if (userAnswers[currentIndex] === null) checkAnswer();
+                    else nextQuestion();
+                }
+            }
+        });
+
+        window.addEventListener("beforeunload", () => stopQuotes());
+    </script>
+</body>
+</html>
