@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>🇫🇷 Французский · Вопросы 101–150 · Магия Парижа</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: radial-gradient(ellipse at 30% 20%, #0a0a2a, #020118);
+            font-family: 'Segoe UI', 'Inter', 'Poppins', sans-serif;
+            min-height: 100vh;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .magic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(circle at 20% 40%, rgba(255, 105, 180, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(155, 48, 255, 0.08) 0%, transparent 50%);
+        }
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: starTwinkle 5s infinite alternate;
+            pointer-events: none;
+            z-index: 0;
+        }
+        @keyframes starTwinkle {
+            0% { opacity: 0.15; transform: scale(0.6); box-shadow: 0 0 2px #fff; }
+            100% { opacity: 0.9; transform: scale(1.3); box-shadow: 0 0 12px #ff99cc, 0 0 6px #cc66ff; }
+        }
+        .french-float {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            opacity: 0.35;
+            animation: floatFrench 22s infinite alternate ease-in-out;
+            filter: drop-shadow(0 0 8px #ff66cc) drop-shadow(0 0 4px #aa66ff);
+        }
+        @keyframes floatFrench {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(35px, -30px) rotate(8deg); }
+        }
+        .eiffel { top: 3%; left: 1%; animation-duration: 18s; }
+        .baguette { bottom: 5%; right: 1%; animation-duration: 24s; }
+        .croissant { top: 70%; left: 86%; animation-duration: 26s; }
+        .quiz-wrapper {
+            max-width: 1100px;
+            width: 100%;
+            background: rgba(8, 8, 35, 0.7);
+            backdrop-filter: blur(14px);
+            border-radius: 2rem;
+            padding: 1.2rem;
+            border: 1px solid rgba(255, 105, 180, 0.5);
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.25), 0 0 20px rgba(155, 48, 255, 0.25);
+            z-index: 10;
+        }
+        h1 {
+            font-size: clamp(1.2rem, 5vw, 1.8rem);
+            background: linear-gradient(135deg, #ff99cc, #ffffff, #d9b3ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px #ff99cc;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .total-badge {
+            background: rgba(26, 44, 110, 0.7);
+            backdrop-filter: blur(4px);
+            padding: 0.2rem 0.8rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            font-size: clamp(0.7rem, 3vw, 0.9rem);
+            color: #ffccdd;
+            border: 1px solid #ff66cc;
+            text-shadow: 0 0 6px #ff66cc;
+        }
+        .quote-box {
+            background: rgba(26, 44, 110, 0.5);
+            border-radius: 1.5rem;
+            padding: 0.6rem 1rem;
+            margin: 0.8rem 0;
+            text-align: center;
+            border-left: 6px solid #ff66cc;
+            font-style: italic;
+            color: #fff0f5;
+            text-shadow: 0 0 6px #1a2c6e;
+            font-size: clamp(0.8rem, 3.5vw, 1rem);
+        }
+        .rules {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 1.2rem;
+            padding: 0.5rem 0.8rem;
+            margin-bottom: 0.8rem;
+            font-size: clamp(0.7rem, 3vw, 0.85rem);
+            color: #ffdfe6;
+            border: 1px solid rgba(255, 102, 204, 0.5);
+        }
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+        }
+        .stat {
+            background: rgba(26, 44, 110, 0.7);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2rem;
+            font-size: clamp(0.7rem, 3vw, 0.85rem);
+            font-weight: bold;
+            border: 1px solid #ff99cc;
+            color: #ffebf0;
+            text-shadow: 0 0 5px #1a2c6e;
+        }
+        .progress-area {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .progress-bar-bg {
+            flex: 1;
+            background: #1a1a3a;
+            height: 1rem;
+            border-radius: 2rem;
+            overflow: hidden;
+        }
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff66cc, #b366ff, #ffffff);
+            transition: width 0.3s;
+            box-shadow: 0 0 6px #ff66cc;
+        }
+        .progress-text {
+            background: #00000066;
+            padding: 0.1rem 0.6rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            font-size: clamp(0.7rem, 3vw, 0.85rem);
+            color: #ffddcc;
+        }
+        .question-card {
+            background: rgba(0, 0, 0, 0.55);
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin: 0.8rem 0;
+            border: 2px solid rgba(255, 102, 204, 0.6);
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+        }
+        .question-text {
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            font-weight: 600;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 0.8rem;
+            border-radius: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+            text-shadow: 0 0 8px #b366ff;
+            word-break: break-word;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+        .option {
+            background: rgba(26, 26, 62, 0.8);
+            border: 1px solid #ff99cc;
+            border-radius: 2rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: 0.1s;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: clamp(0.8rem, 3.5vw, 1rem);
+            word-break: break-word;
+        }
+        .option.selected {
+            background: rgba(255, 102, 204, 0.5);
+            border-color: #ffffff;
+            box-shadow: 0 0 12px #ff66cc;
+        }
+        .feedback {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 1.5rem;
+            padding: 0.6rem;
+            margin: 0.8rem 0;
+            text-align: center;
+            border-left: 6px solid #ff99cc;
+            color: #ffffcc;
+            text-shadow: 0 0 6px #1a2c6e;
+            font-size: clamp(0.8rem, 3.5vw, 1rem);
+        }
+        .button-group {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 0.6rem;
+        }
+        .btn {
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: linear-gradient(95deg, #1a2c6e, #b366ff);
+            color: white;
+            transition: 0.1s;
+            box-shadow: 0 0 10px #ff99cc;
+            font-size: clamp(0.8rem, 3.5vw, 1rem);
+        }
+        .btn-primary {
+            background: linear-gradient(95deg, #ff66cc, #b366ff);
+            box-shadow: 0 0 15px #ff66cc;
+        }
+        .restart-btn {
+            background: linear-gradient(95deg, #ffffff, #1a2c6e);
+            color: #1a2c6e;
+        }
+        .hidden {
+            display: none;
+        }
+        .review-section {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 1.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            border: 1px solid #ff99cc;
+        }
+        .mistake-item {
+            background: #1a173d;
+            padding: 0.5rem;
+            border-radius: 1rem;
+            margin-bottom: 0.5rem;
+            border-left: 8px solid #ff66cc;
+            color: #ffddcc;
+            font-size: clamp(0.75rem, 3vw, 0.9rem);
+            word-break: break-word;
+        }
+        footer {
+            text-align: center;
+            font-size: clamp(0.65rem, 3vw, 0.75rem);
+            margin-top: 1rem;
+            color: #ffccdd;
+            text-shadow: 0 0 6px #1a2c6e;
+        }
+        @media (max-width: 600px) {
+            .quiz-wrapper { padding: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="magic-bg"></div>
+    <div class="french-float eiffel">🗼</div>
+    <div class="french-float baguette">🥖</div>
+    <div class="french-float croissant">🥐</div>
+    <script>
+        for (let i = 0; i < 150; i++) {
+            let star = document.createElement('div');
+            star.classList.add('star');
+            let sz = Math.random() * 3 + 1;
+            star.style.width = sz + 'px';
+            star.style.height = sz + 'px';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 8 + 's';
+            star.style.animationDuration = 3 + Math.random() * 5 + 's';
+            document.body.appendChild(star);
+        }
+    </script>
+    <div class="quiz-wrapper" id="app">
+        <div class="top-bar">
+            <h1>🇫🇷 Французский язык · 101–150 · Парижское сияние</h1>
+            <span class="total-badge" id="totalSpan">📘 всего: 50</span>
+        </div>
+        <div class="quote-box" id="quoteBox">✨ Учи французский — открывай мир любви и культуры. ✨</div>
+        <div class="rules">
+            🚀 Правила: Выбери вариант, нажми Enter для проверки, ещё раз Enter – следующий вопрос. В любой момент можно нажать «Перезапустить тест».
+        </div>
+        <div id="startScreen" style="text-align:center; padding:1.5rem 0;">
+            <button class="btn btn-primary" id="startBtn" style="font-size:clamp(1.2rem, 5vw, 1.8rem); padding:0.6rem 1.5rem;">✨ НАЧАТЬ ТЕСТ ✨</button>
+        </div>
+        <div id="quizInterface" class="hidden">
+            <div class="stats-grid">
+                <div class="stat">✅ Верно: <span id="correctCount">0</span></div>
+                <div class="stat">❌ Ошибки: <span id="mistakeCount">0</span></div>
+                <div class="stat">🎯 Точность: <span id="accuracyPercent">0</span>%</div>
+                <div class="stat">📝 Отвечено: <span id="answeredCount">0</span></div>
+                <div class="stat">🌙 Осталось: <span id="remainingCount">50</span></div>
+            </div>
+            <div class="progress-area">
+                <div class="progress-bar-bg"><div class="progress-fill" id="progressFill"></div></div>
+                <div class="progress-text" id="progressFraction">0/50</div>
+            </div>
+            <div class="question-card">
+                <div class="question-text" id="questionDisplay"></div>
+                <div class="options" id="optionsContainer"></div>
+                <div class="feedback" id="feedbackArea">✨ Выбери ответ и нажми «Проверить» ✨</div>
+                <div class="button-group">
+                    <button class="btn btn-primary" id="checkBtn">✅ Проверить (Enter)</button>
+                    <button class="btn" id="nextBtn">➡ Следующий (Enter)</button>
+                </div>
+            </div>
+            <button class="btn restart-btn" id="restartBtn">🔄 Перезапустить тест</button>
+            <div id="reviewBlock" class="review-section hidden">
+                <h3 style="color:#ff99cc; font-size:clamp(1rem, 4vw, 1.2rem);">📖 Разбор ошибок</h3>
+                <div id="mistakeList"></div>
+                <button class="btn restart-btn" id="restartReviewBtn" style="margin-top:0.8rem;">🔄 Пройти заново</button>
+            </div>
+        </div>
+        <footer>✨ магия Парижа · неоновые розовый и фиолетовый · адаптивный тест ✨</footer>
+    </div>
+    <script>
+        const rawQuestions = [
+            { text: "Nous allons sortir, mais nous ne savons pas encore où nous ______. Peut-être au restaurant.", options: ["allions", "allons", "allez", "aller"], correct: "allons" },
+            { text: "Je vais ______ une nouvelle veste demain parce qu'il fait plus froid. Elle est très à la mode.", options: ["achats", "acheté", "achète", "acheter"], correct: "acheter" },
+            { text: "Cette robe est très ______ et confortable, elle est parfaite pour l'été. J'aime aussi sa couleur.", options: ["beau", "belle", "beaux", "belles"], correct: "belle" },
+            { text: "Je préfère ______ chaussures noires plutôt que celles-ci. Elles sont plus élégantes.", options: ["ceux", "cette", "ces", "cet"], correct: "ces" },
+            { text: "Il va ______ ce pantalon au magasin parce qu'il est trop petit. La taille ne convient pas.", options: ["acheter", "vendre", "remporter", "rendre"], correct: "vendre" },
+            { text: "Cette chemise est moins ______ que l'autre, mais elle est plus pratique pour tous les jours. Je la porte souvent.", options: ["cher", "chères", "chers", "chère"], correct: "chère" },
+            { text: "Je trouve que ce T-shirt est très ______, il est parfait pour le sport. Il est léger et agréable.", options: ["flexible", "pratique", "souple", "grand"], correct: "pratique" },
+            { text: "Nous allons ______ au centre commercial pour acheter des vêtements. Il y a beaucoup de choix.", options: ["allées", "allons", "aller", "allé"], correct: "aller" },
+            { text: "Paul veut acheter une nouvelle paire de chaussures. Il cherche quelque chose de pratique et pas trop cher. Il compare plusieurs modèles dans le magasin. Paul cherche des chaussures ______.", options: ["confortables", "chères", "petites", "vieilles"], correct: "confortables" },
+            { text: "Marie regarde la météo avant de sortir. Ça caille et il y a du vent. Elle décide de mettre un manteau chaud. Marie met un manteau parce qu'il fait ______.", options: ["chaud", "beau", "froid", "frais"], correct: "froid" },
+            { text: "Thanos a acheté un sac très élégant. Il l'utilise tous les jours pour aller au travail. Il est très satisfait de son achat. Le sac de Thanos est en ______.", options: ["plastique", "cuir", "papier", "verre"], correct: "cuir" },
+            { text: "Julie regarde un site de vêtements en ligne. Elle veut acheter une tenue pour une soirée. Elle hésite entre deux modèles. Julie veut acheter ______.", options: ["un pantalon", "un manteau", "une robe", "un sac"], correct: "une robe" },
+            { text: "Lucas parle avec un vendeur dans un magasin. Il demande combien coûte le T-shirt. Le vendeur lui donne des informations. Lucas parle du ______ du T-shirt.", options: ["couleur", "prix", "poids", "goût"], correct: "prix" },
+            { text: "Ce pantalon est trop grand, je vais ______ une taille plus petite. Celui-ci ne me va pas bien.", options: ["prennes", "prendre", "prends", "pris"], correct: "prendre" },
+            { text: "Je préfère ce manteau parce qu'il est ______ chaud que l'autre. Il est plus adapté à l'hiver.", options: ["plus", "moins", "aussi", "très"], correct: "plus" },
+            { text: "Tu peux ______ ce pull, il est vraiment confortable et à la mode. Je te le conseille.", options: ["mettant", "mettre", "mets", "mis"], correct: "mettre" },
+            { text: "Ces chaussures sont très ______, elles ne font pas mal aux pieds. Je peux marcher longtemps.", options: ["convenientes", "confort", "confortables", "conforter"], correct: "confortables" },
+            { text: "Je vais ______ voir cette nouvelle collection demain avec mes amis. Elle a l'air intéressante.", options: ["venir", "aller", "vais", "allé"], correct: "aller" },
+            { text: "Ce sac est plus lourd ______ celui que j'ai déjà. Il n'est pas très pratique.", options: ["qu'", "où", "qui", "que"], correct: "que" },
+            { text: "Emma regarde les vêtements dans un magasin. Elle aime les couleurs intenses et les styles modernes. Elle choisit un pull rouge. Emma aime les couleurs ______.", options: ["sombres", "simples", "tristes", "vives"], correct: "vives" },
+            { text: "Thomas prépare ses vêtements pour l'hiver. Il veut être à l'aise et ne pas avoir froid. Thomas choisit des vêtements ______.", options: ["légers", "chauds", "petits", "courts"], correct: "chauds" },
+            { text: "Pour aller au centre-ville, tu dois ______ le métro et descendre à la troisième station. C'est plus rapide.", options: ["prendre", "prende", "prends", "pris"], correct: "prendre" },
+            { text: "Cette ville est très grande, ______ il y a beaucoup de transports en commun. C'est pratique pour se déplacer.", options: ["mais", "donc", "ou", "car"], correct: "donc" },
+            { text: "À Paris, il y a beaucoup de monuments célèbres, ______ la tour Eiffel et le Louvre. Les touristes les visitent.", options: ["mais", "où", "comme", "avec"], correct: "comme" },
+            { text: "Dans mon quartier, il y a un parc ______ je vais souvent pour me détendre. C'est calme et agréable.", options: ["que", "dont", "qui", "où"], correct: "où" },
+            { text: "Tu ______ tout droit, puis tu tournes à gauche pour trouver le musée. C'est facile à trouver.", options: ["vais", "vas", "aller", "allé"], correct: "vas" },
+            { text: "Prenez le bus numéro 5, puis ______ à l'arrêt \"Centre\". C'est là que se trouve le magasin.", options: ["descendait", "descend", "descendez", "descendre"], correct: "descendez" },
+            { text: "Cette rue est très animée, ______ il y a beaucoup de magasins et de restaurants. On peut tout faire à pied.", options: ["par", "car", "mais", "ou"], correct: "car" },
+            { text: "Paul est dans une nouvelle ville. Il demande son chemin pour prendre le train. Une personne lui explique comment y aller. Paul cherche ______.", options: ["la gare", "un restaurant", "un hôtel", "un parc"], correct: "la gare" },
+            { text: "Coco habite dans un quartier avec peu de voitures. Elle aime marcher dans les rues tranquilles. Elle trouve son quartier agréable. Le quartier de Coco est ______.", options: ["bruyant", "calme", "grand", "rapide"], correct: "calme" },
+            { text: "Mark prend ce transport tous les jours pour aller au travail. C'est rapide et pratique. Il évite les embouteillages car il est souterrain. Mark utilise ______.", options: ["la voiture", "le train", "le vélo", "le métro"], correct: "le métro" },
+            { text: "Sophie est dans une ville touristique. Elle prend un bus pour voir les monuments. Elle découvre plusieurs lieux célèbres. Sophie fait ______.", options: ["du sport", "une visite", "du travail", "des courses"], correct: "une visite" },
+            { text: "Dans cette ville, il y a ______ (100.000) habitants. C'est une grande métropole.", options: ["cent milles", "cent mille", "cent", "mille cent"], correct: "cent mille" },
+            { text: "Ce village est très petit, il y a seulement ______ (200) habitants. Tout le monde se connaît.", options: ["deux cents", "deux cent", "deux mille", "vingt mille"], correct: "deux cents" },
+            { text: "Nous allons à la gare ______ bus, car c'est plus rapide que la marche. Le trajet est court.", options: ["au", "en", "à", "par"], correct: "en" },
+            { text: "Il faut marcher cinq minutes, ______ tourner à droite pour arriver au café. C'est très simple.", options: ["et", "mais", "puis", "car"], correct: "puis" },
+            { text: "Cette ville est ancienne, ______ elle a aussi des bâtiments modernes. Le mélange est intéressant.", options: ["donc", "mais", "car", "ou"], correct: "mais" },
+            { text: "Tu peux aller au musée ______ métro ou à pied si tu préfères marcher. Les deux options sont possibles.", options: ["en", "à", "avec", "par"], correct: "en" },
+            { text: "Dans cette rue, il y a beaucoup de cafés ______ les gens aiment se retrouver. L'ambiance est agréable.", options: ["que", "où", "qui", "dont"], correct: "où" },
+            { text: "Pour aller à l'hôtel, tu ______ à gauche après le pont, puis tu continues tout droit. C'est indiqué.", options: ["tourne", "tourner", "tournes", "tourné"], correct: "tournes" },
+            { text: "Cette avenue est très large, ______ elle est souvent pleine de voitures. Il y a beaucoup de circulation.", options: ["donc", "mais", "car", "et"], correct: "mais" },
+            { text: "Au supermarché, je dois ______ des légumes et des fruits pour préparer le dîner. Je fais une liste avant.", options: ["achètes", "acheter", "achète", "acheté"], correct: "acheter" },
+            { text: "Je voudrais ______ pain, s'il vous plaît. C'est pour le petit déjeuner.", options: ["d'", "du", "de la", "des"], correct: "du" },
+            { text: "Elle boit ______ eau après le sport pour rester hydratée. C'est important pour la santé.", options: ["du", "des", "de la", "de l'"], correct: "de l'" },
+            { text: "Nous avons acheté ______ pommes pour faire une tarte. Elles sont très bonnes.", options: ["du", "des", "de la", "de"], correct: "des" },
+            { text: "Je n'ai pas ______ sucre à la maison, je dois en acheter. Il n'en reste plus.", options: ["du", "des", "de", "le"], correct: "de" },
+            { text: "Au restaurant, je vais ______ un plat principal et un dessert. J'ai très faim.", options: ["prenait", "prendre", "prends", "pris"], correct: "prendre" },
+            { text: "Tu peux ______ par carte ou en espèces, comme tu préfères. Les deux sont acceptés.", options: ["payer", "payes", "paies", "payé"], correct: "payer" },
+            { text: "Nous allons ______ au restaurant ce soir pour fêter un anniversaire. C'est une occasion spéciale.", options: ["visiter", "aller", "allons", "allé"], correct: "aller" },
+            { text: "Je prends une soupe ______ entrée, puis un plat chaud. Le menu est équilibré.", options: ["à", "avec", "de", "en"], correct: "en" }
+        ];
+        const total = rawQuestions.length;
+        document.getElementById("totalSpan").innerText = `📘 всего: ${total}`;
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+        function shuffleOptions(q) {
+            let shuffledOptions = shuffleArray([...q.options]);
+            return { text: q.text, options: shuffledOptions, correct: q.correct };
+        }
+        let questions = [];
+        let userAnswers = new Array(total).fill(null);
+        let currentIndex = 0;
+        let quizActive = false;
+        const startScreenDiv = document.getElementById("startScreen");
+        const quizInterfaceDiv = document.getElementById("quizInterface");
+        const startBtn = document.getElementById("startBtn");
+        const questionDisplay = document.getElementById("questionDisplay");
+        const optionsContainer = document.getElementById("optionsContainer");
+        const feedbackArea = document.getElementById("feedbackArea");
+        const checkBtn = document.getElementById("checkBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const restartBtn = document.getElementById("restartBtn");
+        const restartReviewBtn = document.getElementById("restartReviewBtn");
+        const reviewBlock = document.getElementById("reviewBlock");
+        const mistakeListDiv = document.getElementById("mistakeList");
+        const correctSpan = document.getElementById("correctCount");
+        const mistakeSpan = document.getElementById("mistakeCount");
+        const accuracySpan = document.getElementById("accuracyPercent");
+        const answeredSpan = document.getElementById("answeredCount");
+        const remainingSpan = document.getElementById("remainingCount");
+        const progressFill = document.getElementById("progressFill");
+        const progressFraction = document.getElementById("progressFraction");
+        let quoteInterval = null;
+        const quotes = [
+            "✨ Французский — язык любви и элегантности.",
+            "📖 Каждый правильный ответ приближает тебя к Парижу.",
+            "🌙 Неоновая магия поможет сдать экзамен на отлично!",
+            "💪 Ты справишься, ты умница!",
+            "🎓 Учись ярко, живи как в Париже.",
+            "🗼 La Tour Eiffel тебя ждёт — учи французский!",
+            "✨ Ошибки — это ступени к мастерству."
+        ];
+        function updateQuote() {
+            const idx = Math.floor(Math.random() * quotes.length);
+            const qb = document.getElementById("quoteBox");
+            if (qb) qb.innerHTML = `✨ ${quotes[idx]} ✨`;
+        }
+        function startQuotes() { if (quoteInterval) clearInterval(quoteInterval); updateQuote(); quoteInterval = setInterval(updateQuote, 12000); }
+        function stopQuotes() { if (quoteInterval) clearInterval(quoteInterval); }
+        function computeStats() {
+            let correct = 0, wrong = 0, answered = 0;
+            for (let i = 0; i < total; i++) {
+                if (userAnswers[i] !== null) {
+                    answered++;
+                    if (userAnswers[i].isCorrect) correct++;
+                    else wrong++;
+                }
+            }
+            const acc = answered === 0 ? 0 : Math.round((correct / answered) * 100);
+            correctSpan.innerText = correct;
+            mistakeSpan.innerText = wrong;
+            accuracySpan.innerText = acc;
+            answeredSpan.innerText = answered;
+            remainingSpan.innerText = total - answered;
+            const percent = (answered / total) * 100;
+            progressFill.style.width = percent + "%";
+            progressFraction.innerText = `${answered}/${total}`;
+        }
+        function renderCurrentQuestion() {
+            if (!quizActive) return;
+            const q = questions[currentIndex];
+            questionDisplay.innerText = q.text;
+            optionsContainer.innerHTML = "";
+            const letters = ['A', 'B', 'C', 'D'];
+            q.options.forEach((opt, idx) => {
+                const div = document.createElement("div");
+                div.className = "option";
+                div.innerHTML = `<span style="font-weight:bold; margin-right:12px;">${letters[idx]}.</span> ${opt}`;
+                div.onclick = () => {
+                    if (userAnswers[currentIndex] !== null) {
+                        feedbackArea.innerHTML = "⚠️ Ты уже ответил на этот вопрос.";
+                        return;
+                    }
+                    document.querySelectorAll(".option").forEach(el => el.classList.remove("selected"));
+                    div.classList.add("selected");
+                    window._tempSelectedOption = opt;
+                };
+                optionsContainer.appendChild(div);
+            });
+            if (userAnswers[currentIndex] !== null) {
+                const saved = userAnswers[currentIndex];
+                document.querySelectorAll(".option").forEach(el => {
+                    el.style.pointerEvents = "none";
+                    if (el.innerText.includes(saved.selected)) el.classList.add("selected");
+                });
+                feedbackArea.innerHTML = saved.isCorrect ? `✅ Верно: ${saved.selected}` : `❌ Неверно. Правильно: ${questions[currentIndex].correct}`;
+                checkBtn.disabled = true;
+            } else {
+                document.querySelectorAll(".option").forEach(el => el.style.pointerEvents = "auto");
+                feedbackArea.innerHTML = "✨ Выбери ответ → «Проверить»";
+                checkBtn.disabled = false;
+            }
+            computeStats();
+        }
+        function checkAnswer() {
+            if (!quizActive) return;
+            if (userAnswers[currentIndex] !== null) { feedbackArea.innerHTML = "Уже отвечено"; return; }
+            const selected = window._tempSelectedOption;
+            if (!selected) { feedbackArea.innerHTML = "⚠️ Выбери вариант!"; return; }
+            const currentQ = questions[currentIndex];
+            const isCorrect = (selected === currentQ.correct);
+            userAnswers[currentIndex] = { selected, isCorrect };
+            renderCurrentQuestion();
+            computeStats();
+        }
+        function nextQuestion() {
+            if (!quizActive) return;
+            if (userAnswers[currentIndex] === null) { feedbackArea.innerHTML = "⚠️ Сначала ответь на вопрос."; return; }
+            if (currentIndex + 1 < total) {
+                currentIndex++;
+                window._tempSelectedOption = null;
+                renderCurrentQuestion();
+            } else {
+                feedbackArea.innerHTML = "🎉 Тест пройден! Смотри ошибки ниже.";
+                reviewBlock.classList.remove("hidden");
+                let mistakesHtml = "";
+                for (let i=0; i<total; i++) {
+                    if (userAnswers[i] !== null && !userAnswers[i].isCorrect) {
+                        mistakesHtml += `<div class="mistake-item"><strong>❓ Вопрос ${i+1}:</strong> ${questions[i].text}<br>👉 Твой ответ: ${userAnswers[i].selected}<br>✅ Правильный: ${questions[i].correct}</div>`;
+                    } else if (userAnswers[i] === null) {
+                        mistakesHtml += `<div class="mistake-item"><strong>❓ Вопрос ${i+1}:</strong> ${questions[i].text}<br>👉 Не отвечен<br>✅ Правильный: ${questions[i].correct}</div>`;
+                    }
+                }
+                if (mistakesHtml === "") mistakesHtml = "<p>✨ Идеально! Нет ошибок ✨</p>";
+                mistakeListDiv.innerHTML = mistakesHtml;
+            }
+        }
+        function restartQuiz() {
+            let shuffledRaw = shuffleArray([...rawQuestions]);
+            questions = shuffledRaw.map(q => shuffleOptions(q));
+            userAnswers.fill(null);
+            currentIndex = 0;
+            window._tempSelectedOption = null;
+            reviewBlock.classList.add("hidden");
+            renderCurrentQuestion();
+            computeStats();
+        }
+        function startQuiz() {
+            startScreenDiv.classList.add("hidden");
+            quizInterfaceDiv.classList.remove("hidden");
+            quizActive = true;
+            startQuotes();
+            restartQuiz();
+        }
+        startBtn.addEventListener("click", startQuiz);
+        checkBtn.addEventListener("click", checkAnswer);
+        nextBtn.addEventListener("click", nextQuestion);
+        restartBtn.addEventListener("click", restartQuiz);
+        restartReviewBtn.addEventListener("click", () => { restartQuiz(); reviewBlock.classList.add("hidden"); });
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                if (!quizActive && !startScreenDiv.classList.contains("hidden")) startQuiz();
+                else if (quizActive && !quizInterfaceDiv.classList.contains("hidden")) {
+                    if (userAnswers[currentIndex] === null) checkAnswer();
+                    else nextQuestion();
+                }
+            }
+        });
+        window.addEventListener("beforeunload", () => stopQuotes());
+    </script>
+</body>
+</html>
